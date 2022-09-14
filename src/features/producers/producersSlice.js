@@ -31,6 +31,9 @@ const producersSlice = createSlice({
 			updateProducer.qty += 1;
 			updateProducer.price = Math.floor(updateProducer.price * 1.25);
 		},
+		setSavedProducers(state, action) {
+			state = action.payload;
+		},
 	},
 	extraReducers(builder) {
 		builder
@@ -39,7 +42,15 @@ const producersSlice = createSlice({
 			})
 			.addCase(fetchProducers.fulfilled, (state, action) => {
 				state.status = 'succeeded';
-				state.producers = [...action.payload];
+				if (localStorage.getItem('game')) {
+					const { producers } = JSON.parse(localStorage.getItem('game'));
+					console.log(producers, 'proooo');
+					state.producers = [...producers];
+				} else {
+					// const game = JSON.parse(localStorage.getItem('game'));
+					// console.log(game.producers, 'game');
+					state.producers = [...action.payload];
+				}
 				state.error = '';
 			})
 			.addCase(fetchProducers.rejected, (state, action) => {
@@ -53,5 +64,6 @@ export const getProducersStatus = (state) => state.producers.status;
 export const getUnluckedProducers = (state) =>
 	state.producers.producers.filter((producer) => producer.unlucked === true);
 
-export const { unluckProducers, updateProducer } = producersSlice.actions;
+export const { unluckProducers, updateProducer, setSavedProducers } =
+	producersSlice.actions;
 export default producersSlice.reducer;

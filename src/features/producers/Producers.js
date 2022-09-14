@@ -28,7 +28,7 @@ const Producers = () => {
 		setCoffeeCount(state.coffee.coffeeCount);
 		dispatch(unluckProducers(state.coffee.coffeeCount));
 		setUnlucks(isUnlucked);
-	}, [state]);
+	}, [state.coffee]);
 
 	return (
 		<div className="column">

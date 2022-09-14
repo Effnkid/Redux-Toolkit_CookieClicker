@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateProducer } from './producersSlice';
 import { updateCPS } from '../coffee/coffeeSlice';
+
 const UnluckedProducer = ({ producer, coffeeCount }) => {
 	const dispatch = useDispatch();
 	React.useEffect(() => {}, [producer]);
