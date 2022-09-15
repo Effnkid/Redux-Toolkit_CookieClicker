@@ -42,15 +42,7 @@ const producersSlice = createSlice({
 			})
 			.addCase(fetchProducers.fulfilled, (state, action) => {
 				state.status = 'succeeded';
-				if (localStorage.getItem('game')) {
-					const { producers } = JSON.parse(localStorage.getItem('game'));
-					console.log(producers, 'proooo');
-					state.producers = [...producers];
-				} else {
-					// const game = JSON.parse(localStorage.getItem('game'));
-					// console.log(game.producers, 'game');
-					state.producers = [...action.payload];
-				}
+				state.producers = [...action.payload];
 				state.error = '';
 			})
 			.addCase(fetchProducers.rejected, (state, action) => {

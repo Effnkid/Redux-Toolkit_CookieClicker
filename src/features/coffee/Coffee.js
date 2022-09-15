@@ -1,8 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, updateCoffee } from './coffeeSlice';
+
 const Coffee = () => {
 	const dispatch = useDispatch();
+
 	const state = useSelector((state) => state);
 	const { coffee } = state;
 
@@ -16,11 +18,6 @@ const Coffee = () => {
 		};
 	});
 
-	React.useEffect(() => {
-		coffee.coffeeCount !== 0 &&
-			localStorage.setItem('game', JSON.stringify(state));
-	}, [coffee]);
-
 	const handleClick = (event) => {
 		event.preventDefault();
 		dispatch(increment());
@@ -32,7 +29,6 @@ const Coffee = () => {
 
 	return (
 		<>
-			<button id="reset">reset</button>
 			<div className="column">
 				<div className="container left">
 					<div className="counter-container">
