@@ -2,6 +2,7 @@ import React from 'react';
 import Coffee from './features/coffee/Coffee';
 import Producers from './features/producers/Producers';
 import { persistor } from './app/store';
+
 export default function App() {
 	const handlePurge = () => {
 		persistor.purge();
